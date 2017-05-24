@@ -1,5 +1,7 @@
 # https-proxy-cli [![Build Status](https://travis-ci.org/naugtur/https-proxy-cli.svg?branch=master)](https://travis-ci.org/naugtur/https-proxy-cli)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/naugtur/https-proxy-cli.svg)](https://greenkeeper.io/)
+
 One command to run a local https proxy.
 
 No need to set up certs!
