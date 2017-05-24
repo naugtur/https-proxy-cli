@@ -1,6 +1,6 @@
 {
   "name": "https-proxy-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "One command to run a local https server proxying to local http",
   "main": "cli.js",
   "bin": {
