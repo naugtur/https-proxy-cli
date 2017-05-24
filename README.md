@@ -20,10 +20,12 @@ https-proxy -t http://localhost:80 -p 1234
 https-proxy --help
 
 Put https in front of your running app
-Usage: /usr/local/bin/node ./cli.js
+Example: https-proxy -t http://localhost:8080 -p 8888 --path ~
+Usage: https-proxy <options>
 
 Options:
   -t, --target  target address, like http://localhost:80  [required]
   -p, --port    port to use for https                     [required]
+  --keys        path for storing .key.pem and .cert.pem   [string]  [default: undefined]
 
 ```

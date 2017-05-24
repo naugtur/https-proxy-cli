@@ -4,15 +4,18 @@ const httpProxy = require('http-proxy')
 const pem = require('pem')
 const console = require('console')
 const fs = require('fs')
+const path = require('path')
 
 const argv = require('optimist')
-    .usage('Put https in front of your running app\nUsage: $0')
+    .usage('Put https in front of your running app\nUsage: $0 <options>\nExample: $0 -t http://localhost:8080 -p 8888 --keys ~')
     .demand('t')
     .alias('t', 'target')
     .describe('t', 'target address, like http://localhost:80')
     .demand('p')
     .alias('p', 'port')
     .describe('p', 'port to use for https')
+    .describe('keys', 'path for storing .key.pem and .cert.pem')
+    .default('keys', '.')
     .argv
 
 function getKeys (callback) {
@@ -29,18 +32,24 @@ function getKeys (callback) {
       if (err) {
         callback(err, null)
       }
-      fs.writeFileSync('.key.pem', keys.serviceKey)
-      fs.writeFileSync('.cert.pem', keys.certificate)
+      storeFile('.key.pem', keys.serviceKey)
+      storeFile('.cert.pem', keys.certificate)
       callback(null, keys)
     })
   }
 }
 
-function getFile (path) {
-  if (fs.existsSync(path)) {
-    return fs.readFileSync(path)
+function getFile (file) {
+  const location = path.resolve(argv.keys || '.', file)
+  if (fs.existsSync(location)) {
+    return fs.readFileSync(location)
   }
   return null
+}
+
+function storeFile (file, content) {
+  const location = path.resolve(argv.keys || '.', file)
+  fs.writeFileSync(location, content)
 }
 
 getKeys((err, keys) => {
