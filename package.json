@@ -1,0 +1,32 @@
+{
+  "name": "https-proxy-cli",
+  "version": "1.0.0",
+  "description": "One command to run a local https server proxying to local http",
+  "main": "cli.js",
+  "bin": {
+    "https-proxy": "./cli.js"
+  },
+  "scripts": {
+    "test": "standard",
+    "fix": "standard --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naugtur/https-proxy-cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/naugtur/https-proxy-cli/issues"
+  },
+  "homepage": "https://github.com/naugtur/https-proxy-cli#readme",
+  "devDependencies": {
+    "standard": "^10.0.2"
+  },
+  "dependencies": {
+    "http-proxy": "^1.16.2",
+    "optimist": "^0.6.1",
+    "pem": "^1.9.7"
+  }
+}
