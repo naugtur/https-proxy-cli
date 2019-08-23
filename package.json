@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/naugtur/https-proxy-cli#readme",
   "devDependencies": {
-    "standard": "^11.0.0"
+    "standard": "^14.0.2"
   },
   "dependencies": {
     "http-proxy": "^1.16.2",
