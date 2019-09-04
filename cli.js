@@ -7,23 +7,25 @@ const fs = require('fs')
 const path = require('path')
 
 const argv = require('optimist')
-    .usage('Put https in front of your running app\nUsage: $0 <options>\nExample: $0 -t http://localhost:8080 -p 8888 --keys ~')
-    .demand('t')
-    .alias('t', 'target')
-    .describe('t', 'target address, like http://localhost:80')
-    .demand('p')
-    .alias('p', 'port')
-    .describe('p', 'port to use for https')
-    .describe('keys', 'path for storing .key.pem and .cert.pem')
-    .default('keys', '.')
-    .argv
+  .usage('Put https in front of your running app\nUsage: $0 <options>\nExample: $0 -t http://localhost:8080 -p 8888 --keys ~')
+  .demand('t')
+  .alias('t', 'target')
+  .describe('t', 'target address, like http://localhost:80')
+  .demand('p')
+  .alias('p', 'port')
+  .describe('p', 'port to use for https')
+  .describe('keys', 'path for storing .key.pem and .cert.pem')
+  .default('keys', '.')
+  .alias('k', 'insecure')
+  .describe('insecure', 'flag to accept insecure connections')
+  .argv
 
 function getKeys (callback) {
   const serviceKey = getFile('.key.pem')
   const certificate = getFile('.cert.pem')
 
   if (serviceKey && certificate) {
-    callback(null, {serviceKey, certificate})
+    callback(null, { serviceKey, certificate })
   } else {
     pem.createCertificate({
       days: 1000,
@@ -62,7 +64,8 @@ getKeys((err, keys) => {
     ssl: {
       key: keys.serviceKey,
       cert: keys.certificate
-    }
+    },
+    secure: !argv.insecure
   }).listen(argv.port, _ => {
     console.log(`HTTPS proxy started on https://localhost:${argv.port}`)
   })
