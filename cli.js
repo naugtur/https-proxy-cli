@@ -18,6 +18,8 @@ const argv = require('optimist')
   .default('keys', '.')
   .alias('k', 'insecure')
   .describe('insecure', 'flag to accept insecure connections')
+  .alias('x', 'xfwd')
+  .describe('xfwd', 'adds x-forward headers')
   .argv
 
 function getKeys (callback) {
@@ -65,7 +67,8 @@ getKeys((err, keys) => {
       key: keys.serviceKey,
       cert: keys.certificate
     },
-    secure: !argv.insecure
+    secure: !argv.insecure,
+    xfwd: argv.xfwd
   }).listen(argv.port, _ => {
     console.log(`HTTPS proxy started on https://localhost:${argv.port}`)
   })
