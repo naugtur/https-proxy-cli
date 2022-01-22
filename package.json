@@ -27,6 +27,6 @@
   "dependencies": {
     "http-proxy": "^1.18.1",
     "optimist": "^0.6.1",
-    "pem": "^1.14.4"
+    "pem": "^1.14.5"
   }
 }
