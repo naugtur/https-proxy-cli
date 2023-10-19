@@ -31,6 +31,7 @@ Options:
   --keys        path for storing .key.pem and .cert.pem   [string]  [default: "."]
   --insecure    flag to accept insecure connections
   --xfwd        adds x-forward headers
-
-
+  --rewrite-origin          changes the origin of the host header to the target URL                                          [default: false]
+  --rewrite-location        rewrites the location host/port on (201/301/302/307/308) redirects based on requested host/port  [default: false]
+  --rewrite-cookies-domain  rewrites domain of set-cookie headers                                                            [default: false]
 ```
