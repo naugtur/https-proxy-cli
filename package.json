@@ -22,11 +22,11 @@
   },
   "homepage": "https://github.com/naugtur/https-proxy-cli#readme",
   "devDependencies": {
-    "standard": "^14.0.2"
+    "standard": "^17.1.0"
   },
   "dependencies": {
     "http-proxy": "^1.18.1",
-    "optimist": "^0.5.2",
-    "pem": "^1.14.5"
+    "optimist": "^0.6.1",
+    "pem": "^1.14.8"
   }
 }
