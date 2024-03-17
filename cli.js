@@ -14,12 +14,15 @@ const argv = require('optimist')
   .alias('t', 'target')
   .describe('t', 'target address, like http://localhost:80')
 
-  .demand('p')
+
   .alias('p', 'port')
   .describe('p', 'port to use for https')
 
   .describe('keys', 'path for storing .key.pem and .cert.pem')
   .default('keys', '.')
+
+  .alias('a', 'auth')
+  .describe('a', 'Basic authentication i.e. \'user:password\' to compute an Authorization header.')
 
   .describe('insecure', 'flag to accept insecure connections')
   .alias('k', 'insecure')
@@ -84,6 +87,7 @@ getKeys((err, keys) => {
     console.error(err)
     process.exit(1)
   }
+  const port = argv.port || 443;
   httpProxy
     .createServer({
       target: argv.target,
@@ -91,13 +95,17 @@ getKeys((err, keys) => {
         key: keys.serviceKey,
         cert: keys.certificate
       },
+      auth: argv.auth,
       secure: !argv.insecure,
       xfwd: argv.xfwd,
       changeOrigin: argv['rewrite-origin'],
       autoRewrite: argv['rewrite-location'],
-      cookieDomainRewrite: argv['rewrite-cookies-domain'] ? '' : false
+      cookieDomainRewrite: argv['rewrite-cookies-domain'] ? '' : false,
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
     })
-    .listen(argv.port, (_) => {
-      console.log(`HTTPS proxy started on https://localhost:${argv.port}`)
+    .listen(port, (_) => {
+      console.log(`HTTPS proxy started on https://localhost:${port}`)
     })
 })
