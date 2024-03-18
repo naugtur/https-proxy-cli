@@ -15,7 +15,7 @@ npm install -g https-proxy-cli
 ## Usage
 
 ```
-https-proxy -t http://localhost
+https-proxy -t http://localhost:80
 ```
 
 ```
