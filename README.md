@@ -15,7 +15,7 @@ npm install -g https-proxy-cli
 ## Usage
 
 ```
-https-proxy -t http://localhost:80 -p 1234
+https-proxy -t http://localhost:80
 ```
 
 ```
@@ -27,7 +27,7 @@ Usage: https-proxy <options>
 
 Options:
   -t, --target  target address, like http://localhost:80  [required]
-  -p, --port    port to use for https                     [required]
+  -p, --port    port to use for https, default is 443
   --keys        path for storing .key.pem and .cert.pem   [string]  [default: "."]
   --insecure    flag to accept insecure connections
   --xfwd        adds x-forward headers
