@@ -21,9 +21,6 @@ const argv = require('optimist')
   .describe('keys', 'path for storing .key.pem and .cert.pem')
   .default('keys', '.')
 
-  .alias('a', 'auth')
-  .describe('a', 'Basic authentication i.e. \'user:password\' to compute an Authorization header.')
-
   .describe('insecure', 'flag to accept insecure connections')
   .alias('k', 'insecure')
 
@@ -95,7 +92,6 @@ getKeys((err, keys) => {
         key: keys.serviceKey,
         cert: keys.certificate
       },
-      auth: argv.auth,
       secure: !argv.insecure,
       xfwd: argv.xfwd,
       changeOrigin: argv['rewrite-origin'],
